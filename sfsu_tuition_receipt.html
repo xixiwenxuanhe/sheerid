@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFSU Tuition Payment Receipt</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .receipt-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            border: 3px solid #4a1c5d;
+            position: relative;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 80px;
+            color: rgba(74, 28, 93, 0.05);
+            font-weight: bold;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #4a1c5d;
+        }
+
+        .university-logo {
+            width: 280px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .receipt-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #4a1c5d;
+            margin: 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .receipt-number {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .receipt-date {
+            font-size: 14px;
+            color: #888;
+            font-style: italic;
+        }
+
+        .student-section {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 5px solid #d4af37;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4a1c5d;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #555;
+            flex: 1;
+        }
+
+        .info-value {
+            color: #333;
+            flex: 2;
+            text-align: right;
+        }
+
+        .payment-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #4a1c5d 0%, #2d1b69 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(74, 28, 93, 0.3);
+        }
+
+        .payment-section .section-title {
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .payment-section .info-row {
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+        }
+
+        .payment-section .info-label {
+            color: #e0e0e0;
+        }
+
+        .payment-section .info-value {
+            color: white;
+            font-weight: bold;
+        }
+
+        .total-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d4af37;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .status-paid {
+            background-color: #28a745;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 2px solid #e0e0e0;
+            color: #666;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .official-stamp {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            border: 3px solid #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #d4af37;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .payment-method {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .confirmation-code {
+            font-family: 'Courier New', monospace;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt-container">
+        <div class="watermark">PAID</div>
+        <div class="official-stamp">
+            OFFICIAL<br>RECEIPT
+        </div>
+        
+        <div class="content">
+            <div class="header">
+                <img src="imgs/san-francisco-state-university.png" alt="SFSU Logo" class="university-logo">
+                <h1 class="receipt-title">Tuition Payment Receipt</h1>
+                <div class="receipt-number">Receipt #: SFSU-2025-001234</div>
+                <div class="receipt-date">Generated: January 15, 2025</div>
+            </div>
+
+            <div class="student-section">
+                <div class="section-title">Student Information</div>
+                <div class="info-row">
+                    <div class="info-label">Student Name:</div>
+                    <div class="info-value">Alex Yang</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Student ID:</div>
+                    <div class="info-value">SFSU20251234</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Academic Term:</div>
+                    <div class="info-value">Fall 2025</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Program:</div>
+                    <div class="info-value">Computer Science - Undergraduate</div>
+                </div>
+            </div>
+
+            <div class="payment-section">
+                <div class="section-title">Payment Details</div>
+                <div class="info-row">
+                    <div class="info-label">Tuition & Fees:</div>
+                    <div class="info-value">$6,200.00</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Student Services Fee:</div>
+                    <div class="info-value">$200.00</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Technology Fee:</div>
+                    <div class="info-value">$100.00</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Payment Date:</div>
+                    <div class="info-value">January 15, 2025</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Payment Status:</div>
+                    <div class="info-value">
+                        <span class="status-paid">PAID</span>
+                    </div>
+                </div>
+                <div class="info-row" style="border-top: 2px solid rgba(255,255,255,0.3); margin-top: 15px; padding-top: 15px;">
+                    <div class="info-label">Total Amount:</div>
+                    <div class="info-value total-amount">$6,500.00</div>
+                </div>
+
+                <div class="payment-method">
+                    <div class="info-row">
+                        <div class="info-label">Payment Method:</div>
+                        <div class="info-value">Credit Card (****-****-****-1234)</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Transaction ID:</div>
+                        <div class="info-value">
+                            <span class="confirmation-code">TXN-SFSU-20250115-7891</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p><strong>San Francisco State University</strong></p>
+                <p>Office of Student Financial Services</p>
+                <p>1600 Holloway Avenue, San Francisco, CA 94132</p>
+                <p>Phone: (415) 338-7000 | Email: financialaid@sfsu.edu</p>
+                <p style="margin-top: 15px; font-weight: bold;">
+                    This is an official receipt. Please retain for your records.
+                </p>
+                <p style="font-size: 11px; color: #999;">
+                    For questions regarding this payment, please contact Student Financial Services.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

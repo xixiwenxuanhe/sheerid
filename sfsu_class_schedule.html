@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFSU Fall 2025 Class Schedule</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .schedule-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid #4a1c5d;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #4a1c5d;
+            padding-bottom: 20px;
+        }
+
+        .university-logo {
+            width: 250px;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .main-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4a1c5d;
+            margin: 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 5px solid #d4af37;
+        }
+
+        .student-details {
+            flex: 1;
+        }
+
+        .student-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4a1c5d;
+            margin-bottom: 5px;
+        }
+
+        .student-id {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .semester-info {
+            font-size: 16px;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .print-date {
+            text-align: right;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .schedule-table th {
+            background-color: #4a1c5d;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .schedule-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
+        }
+
+        .schedule-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .schedule-table tr:hover {
+            background-color: #e8f4f8;
+        }
+
+        .course-code {
+            font-weight: bold;
+            color: #4a1c5d;
+        }
+
+        .course-name {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .instructor {
+            color: #666;
+            font-style: italic;
+        }
+
+        .time-slot {
+            color: #2d1b69;
+            font-weight: 500;
+        }
+
+        .location {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .credits {
+            text-align: center;
+            font-weight: bold;
+            color: #d4af37;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .total-credits {
+            background-color: #4a1c5d;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .official-seal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #d4af37;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="schedule-container">
+        <div class="official-seal">
+            OFFICIAL<br>RECORD
+        </div>
+        
+        <div class="header">
+            <img src="imgs/san-francisco-state-university.png" alt="SFSU Logo" class="university-logo">
+            <h1 class="main-title">Fall 2025 Class Schedule</h1>
+        </div>
+
+        <div class="student-info">
+            <div class="student-details">
+                <div class="student-name">Student: Alex Yang</div>
+                <div class="student-id">Student ID: SFSU20251234</div>
+                <div class="semester-info">Semester: Fall 2025</div>
+            </div>
+            <div class="print-date">
+                Generated: January 15, 2025<br>
+                Academic Year: 2025-2026
+            </div>
+        </div>
+
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course Title</th>
+                    <th>Days</th>
+                    <th>Time</th>
+                    <th>Location</th>
+                    <th>Instructor</th>
+                    <th>Credits</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="course-code">CSC 220</td>
+                    <td class="course-name">Data Structures</td>
+                    <td>Mon/Wed</td>
+                    <td class="time-slot">10:00AM - 11:30AM</td>
+                    <td class="location">TH 101</td>
+                    <td class="instructor">Dr. Johnson</td>
+                    <td class="credits">3</td>
+                </tr>
+                <tr>
+                    <td class="course-code">CSC 256</td>
+                    <td class="course-name">Computer Organization</td>
+                    <td>Tue/Thu</td>
+                    <td class="time-slot">2:00PM - 3:30PM</td>
+                    <td class="location">TH 205</td>
+                    <td class="instructor">Prof. Martinez</td>
+                    <td class="credits">3</td>
+                </tr>
+                <tr>
+                    <td class="course-code">MATH 226</td>
+                    <td class="course-name">Calculus I</td>
+                    <td>Mon/Wed/Fri</td>
+                    <td class="time-slot">9:00AM - 10:00AM</td>
+                    <td class="location">TH 312</td>
+                    <td class="instructor">Dr. Chen</td>
+                    <td class="credits">4</td>
+                </tr>
+                <tr>
+                    <td class="course-code">PHYS 220</td>
+                    <td class="course-name">Physics I</td>
+                    <td>Tue/Thu</td>
+                    <td class="time-slot">11:00AM - 12:30PM</td>
+                    <td class="location">SCI 150</td>
+                    <td class="instructor">Dr. Williams</td>
+                    <td class="credits">4</td>
+                </tr>
+                <tr>
+                    <td class="course-code">ENGL 114</td>
+                    <td class="course-name">Composition & Literature</td>
+                    <td>Mon/Wed</td>
+                    <td class="time-slot">1:00PM - 2:30PM</td>
+                    <td class="location">HUM 240</td>
+                    <td class="instructor">Prof. Davis</td>
+                    <td class="credits">3</td>
+                </tr>
+                <tr>
+                    <td class="course-code">CSC 230</td>
+                    <td class="course-name">Discrete Mathematics</td>
+                    <td>Tue/Thu</td>
+                    <td class="time-slot">3:45PM - 5:15PM</td>
+                    <td class="location">TH 108</td>
+                    <td class="instructor">Dr. Thompson</td>
+                    <td class="credits">3</td>
+                </tr>
+                <tr class="total-credits">
+                    <td colspan="6"><strong>Total Credits</strong></td>
+                    <td><strong>20</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <p><strong>San Francisco State University</strong></p>
+            <p>Office of the Registrar | 1600 Holloway Avenue, San Francisco, CA 94132</p>
+            <p>This is an official academic record. Any alterations will invalidate this document.</p>
+        </div>
+    </div>
+</body>
+</html> 
