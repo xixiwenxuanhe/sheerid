@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SFSU Student ID Card</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .id-card {
+      width: 350px;
+      height: 220px;
+      background-color: #fefefe;
+      border: 2px solid #4b2e83; /* SFSU 紫 */
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    .header {
+      background-color: #4b2e83;
+      color: white;
+      padding: 10px 10px 10px 55px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .logo {
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      width: 35px;
+      height: 35px;
+    }
+    .photo {
+      position: absolute;
+      top: 70px;
+      left: 10px;
+      width: 90px;
+      height: 110px;
+      border: 2px solid #4b2e83;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+    .info {
+      position: absolute;
+      top: 70px;
+      left: 110px;
+      right: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #4b2e83;
+      color: white;
+      text-align: center;
+      font-size: 12px;
+      padding: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="id-card">
+    <div class="header">
+      San Francisco State University
+    </div>
+    <img src="imgs/san-francisco-state-university2.png" alt="SFSU Logo" class="logo" />
+    <img src="imgs/people2.png" alt="Student Photo" class="photo" />
+    <div class="info">
+      <strong>Name:</strong> Cobe Lysander<br />
+      <strong>Student ID:</strong> 925213884<br />
+      <strong>Expires:</strong> 2026‑08‑15
+    </div>
+    <div class="footer">
+      OneCard – SF State Official Student Identification
+    </div>
+  </div>
+</body>
+</html>

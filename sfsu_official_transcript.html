@@ -1,167 +1,698 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Official Transcript</title>
-  <style>
-    body {
-      font-family: "Times New Roman", serif;
-      margin: 40px;
-      background-color: #fff;
-      color: #000;
-    }
-
-    .header {
-      text-align: center;
-      border-bottom: 2px solid #000;
-      padding-bottom: 10px;
-    }
-
-    .logo {
-      width: 150px;
-      height: 150px;
-      margin: 0 auto 8px;
-      background-image: url('imgs/san-francisco-state-university.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    .univ-name {
-      font-size: 24px;
-      font-weight: bold;
-      color: #222;
-    }
-
-    .sub-header {
-      text-align: center;
-      margin: 30px 0 10px;
-      font-size: 18px;
-      text-decoration: underline;
-    }
-
-    .student-info {
-      margin-top: 20px;
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    .section-title {
-      font-size: 16px;
-      font-weight: bold;
-      margin-top: 30px;
-      border-bottom: 1px solid #000;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
-    th, td {
-      border: 1px solid #000;
-      padding: 8px;
-      text-align: center;
-    }
-
-    .summary {
-      margin-top: 30px;
-      font-size: 15px;
-    }
-
-    .footer {
-      font-size: 12px;
-      margin-top: 40px;
-      color: #555;
-      border-top: 1px dotted #aaa;
-      padding-top: 10px;
-    }
-
-    .page-number {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 13px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Undergraduate Transcript - Cobe Lysander</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 330px;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            background-color: white;
+            position: relative;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            margin-bottom: 10px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 6px 4px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 11px;
+            line-height: 1.2;
+        }
+        .info-table {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+        .info-table td {
+            padding: 4px;
+            font-size: 12px;
+        }
+        .info-table td:nth-child(odd) {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            width: 12%;
+        }
+        .info-table td:nth-child(even) {
+            width: 13%;
+        }
+        .course-table {
+            width: 100%;
+            table-layout: fixed;
+        }
+        .course-table th {
+            background-color: #e0e0e0;
+            font-weight: bold;
+            padding: 5px 2px;
+            font-size: 10px;
+            text-align: center;
+        }
+        .course-table td {
+            padding: 3px 2px;
+            font-size: 10px;
+            text-align: center;
+        }
+        .course-name {
+            text-align: left;
+            padding-left: 4px;
+            white-space: normal;
+            word-wrap: break-word;
+            max-width: 180px;
+        }
+        .credit-col {
+            width: 6%;
+            text-align: center;
+        }
+        .score-col {
+            width: 6%;
+            text-align: center;
+        }
+        .method-col {
+            width: 9%;
+            text-align: center;
+        }
+        .course-code-col {
+            width: 8%;
+            text-align: center;
+        }
+        .date-col {
+            width: 10%;
+            text-align: center;
+        }
+        .course-table col:nth-child(1),
+        .course-table col:nth-child(2),
+        .course-table col:nth-child(3),
+        .course-table col:nth-child(4),
+        .course-table col:nth-child(5),
+        .course-table col:nth-child(6),
+        .course-table col:nth-child(12),
+        .course-table col:nth-child(13),
+        .course-table col:nth-child(14),
+        .course-table col:nth-child(15),
+        .course-table col:nth-child(16),
+        .course-table col:nth-child(17) {
+            width: 15%;
+        }
+        .header-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 0 10px 0;
+            padding: 0 20px;
+        }
+        
+        .logo-container {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+        
+        .logo {
+            width: 320px;
+            height: 320px;
+            object-fit: contain;
+        }
+        
+        .university-name {
+            text-align: center;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+            margin-left: 0;
+        }
+        
+        .header-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 28px;
+            color: #000;
+            margin-bottom: 10px;
+            margin-left: 0;
+        }
+        .footer {
+            margin-top: 15px;
+        }
+        .footer-table {
+            width: 100%;
+        }
+        .footer-table td {
+            padding: 5px;
+            font-size: 12px;
+        }
+        .footer-table td:nth-child(odd) {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        .seal-info {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .seal-info p {
+            margin: 5px 0;
+            font-size: 12px;
+        }
+        .verification-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 20px;
+            padding: 10px 0;
+        }
+        .qr-code {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+        }
+        .qr-code img {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+        }
+        .seal-section {
+            flex: 1;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+    <div class="header-section">
+        <div class="logo-container">
+            <img src="imgs/san-francisco-state-university.png" alt="SFSU Logo" class="logo">
+        </div>
+        <div class="university-name">San Francisco State University</div>
+        <div class="header-title">Spring 2025 Semester Transcript</div>
+    </div>
 
-  <div class="header">
-    <div class="logo"></div>
-    <div class="univ-name">SAN FRANCISCO STATE UNIVERSITY</div>
-    <div>Office of the Registrar</div>
-    <div>Official Academic Transcript</div>
-  </div>
+    <table class="info-table">
+        <tr>
+            <td>Name</td><td>Cobe Lysander</td>
+            <td>Sex</td><td>Male</td>
+            <td>Date of Birth</td><td>1986-10-16</td>
+        </tr>
+        <tr>
+            <td>Enrollment Date</td><td>2025-08-25</td>
+            <td>Major</td><td>Computer Science</td>
+            <td>Major Direction</td><td>Software Engineering</td>
+        </tr>
+        <tr>
+            <td>College</td><td>College of Science & Engineering</td>
+            <td colspan="4">Bachelor of Science in Computer Science</td>
+        </tr>
+        <tr>
+            <td>Academic Status</td><td>Currently Enrolled</td>
+            <td>Expected Graduation</td><td>Spring 2026</td>
+            <td>Current Term</td><td>Fall 2025</td>
+        </tr>
+    </table>
 
-  <div class="sub-header">
-    Student Transcript
-  </div>
+    <table class="course-table">
+        <colgroup>
+            <col style="width: 5%;">
+            <col style="width: 5%;">
+            <col style="width: 5%;">
+            <col style="width: 5%;">
+            <col style="width: 5%;">
+            <col style="width: 5%;">
+            <col style="width: 6%;">
+            <col style="width: 6%;">
+            <col style="width: 9%;">
+            <col style="width: 8%;">
+            <col style="width: 10%;">
+            <col style="width: 5%;">
+            <col style="width: 5%;">
+            <col style="width: 5%;">
+            <col style="width: 5%;">
+            <col style="width: 5%;">
+            <col style="width: 5%;">
+            <col style="width: 6%;">
+            <col style="width: 6%;">
+            <col style="width: 9%;">
+            <col style="width: 8%;">
+            <col style="width: 10%;">
+        </colgroup>
+        <tr>
+            <th colspan="6">Course Name</th>
+            <th class="credit-col">Credit</th>
+            <th class="score-col">Score</th>
+            <th class="method-col">Study Method</th>
+            <th class="course-code-col">Course</th>
+            <th class="date-col">Examination Date</th>
 
-  <div class="student-info">
-    <p><strong>Name:</strong> Gerald Murphy</p>
-    <p><strong>Student ID:</strong> 925218616</p>
-    <p><strong>Program:</strong> B.S. in Computer Engineering</p>
-    <p><strong>Enrollment Period:</strong> Fall 2021 - Summer 2025</p>
-  </div>
+            <th colspan="6">Course Name</th>
+            <th class="credit-col">Credit</th>
+            <th class="score-col">Score</th>
+            <th class="method-col">Study Method</th>
+            <th class="course-code-col">Course</th>
+            <th class="date-col">Examination Date</th>
+        </tr>
+        <!-- Computer Science Courses -->
+        <tr>
+            <td colspan="6" class="course-name">Introduction to Computer Science</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">92</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC101</td>
+            <td class="date-col">2025-06-10</td>
+            <td colspan="6" class="course-name">Programming Fundamentals</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">88</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC102</td>
+            <td class="date-col">2025-06-12</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Data Structures and Algorithms</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">90</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC210</td>
+            <td class="date-col">2025-06-05</td>
+            <td colspan="6" class="course-name">Computer Systems and Assembly Language</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">85</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC220</td>
+            <td class="date-col">2025-06-08</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Object-Oriented Programming</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">94</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC230</td>
+            <td class="date-col">2025-06-15</td>
+            <td colspan="6" class="course-name">Database Systems</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">89</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC340</td>
+            <td class="date-col">2025-06-18</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Software Engineering</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">91</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC413</td>
+            <td class="date-col">2025-06-20</td>
+            <td colspan="6" class="course-name">Operating Systems</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">87</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC415</td>
+            <td class="date-col">2025-06-22</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Computer Networks</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">86</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC445</td>
+            <td class="date-col">2025-06-25</td>
+            <td colspan="6" class="course-name">Computer Graphics</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">93</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC418</td>
+            <td class="date-col">2025-06-28</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Web Development</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">95</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC317</td>
+            <td class="date-col">2025-06-03</td>
+            <td colspan="6" class="course-name">Machine Learning</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">88</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC580</td>
+            <td class="date-col">2025-06-06</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Artificial Intelligence</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">90</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC484</td>
+            <td class="date-col">2025-06-11</td>
+            <td colspan="6" class="course-name">Mobile App Development</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">92</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC490</td>
+            <td class="date-col">2025-06-14</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Cybersecurity Fundamentals</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">89</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC468</td>
+            <td class="date-col">2025-06-17</td>
+            <td colspan="6" class="course-name">Advanced Data Structures</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">91</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC510</td>
+            <td class="date-col">2025-06-19</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Calculus I</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">85</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">MATH226</td>
+            <td class="date-col">2025-06-21</td>
+            <td colspan="6" class="course-name">Calculus II</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">87</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">MATH227</td>
+            <td class="date-col">2025-06-23</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Linear Algebra</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">88</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">MATH245</td>
+            <td class="date-col">2025-06-26</td>
+            <td colspan="6" class="course-name">Discrete Mathematics</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">90</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">MATH309</td>
+            <td class="date-col">2025-06-29</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Statistics for Computer Science</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">86</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">STAT312</td>
+            <td class="date-col">2025-06-04</td>
+            <td colspan="6" class="course-name">Physics for Engineers I</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">84</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">PHYS220</td>
+            <td class="date-col">2025-06-07</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Technical Writing</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">91</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">ENG214</td>
+            <td class="date-col">2025-06-09</td>
+            <td colspan="6" class="course-name">Ethics in Technology</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">93</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">PHIL458</td>
+            <td class="date-col">2025-06-13</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Project Management</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">89</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">MGMT350</td>
+            <td class="date-col">2025-06-16</td>
+            <td colspan="6" class="course-name">Senior Capstone Project</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">95</td>
+            <td class="method-col">Project</td>
+            <td class="course-code-col">CSC690</td>
+            <td class="date-col">2025-06-24</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Internship in Computer Science</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">Pass</td>
+            <td class="method-col">Internship</td>
+            <td class="course-code-col">CSC698</td>
+            <td class="date-col">2025-06-27</td>
+            <td colspan="6" class="course-name">Cloud Computing</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">92</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC675</td>
+            <td class="date-col">2025-06-30</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">DevOps and CI/CD</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">88</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC678</td>
+            <td class="date-col">2025-06-02</td>
+            <td colspan="6" class="course-name">Game Development</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">91</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC480</td>
+            <td class="date-col">2025-06-01</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Advanced Web Development</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">93</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC517</td>
+            <td class="date-col">2025-06-04</td>
+            <td colspan="6" class="course-name">Parallel Computing</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">87</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC525</td>
+            <td class="date-col">2025-06-07</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Human-Computer Interaction</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">89</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC474</td>
+            <td class="date-col">2025-06-10</td>
+            <td colspan="6" class="course-name">Information Security</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">90</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC468</td>
+            <td class="date-col">2025-06-13</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Digital Image Processing</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">86</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC486</td>
+            <td class="date-col">2025-06-16</td>
+            <td colspan="6" class="course-name">Distributed Systems</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">88</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC545</td>
+            <td class="date-col">2025-06-19</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Blockchain Technology</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">92</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC685</td>
+            <td class="date-col">2025-06-22</td>
+            <td colspan="6" class="course-name">Natural Language Processing</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">89</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC581</td>
+            <td class="date-col">2025-06-25</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Computer Vision</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">91</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC582</td>
+            <td class="date-col">2025-06-28</td>
+            <td colspan="6" class="course-name">Robotics Programming</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">85</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC583</td>
+            <td class="date-col">2025-06-03</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Quantum Computing</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">90</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC589</td>
+            <td class="date-col">2025-06-06</td>
+            <td colspan="6" class="course-name">Bioinformatics</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">87</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC584</td>
+            <td class="date-col">2025-06-09</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">IoT Systems Design</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">88</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC586</td>
+            <td class="date-col">2025-06-12</td>
+            <td colspan="6" class="course-name">Big Data Analytics</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">93</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC587</td>
+            <td class="date-col">2025-06-15</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Advanced Algorithms</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">92</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC511</td>
+            <td class="date-col">2025-06-18</td>
+            <td colspan="6" class="course-name">Software Testing</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">89</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC514</td>
+            <td class="date-col">2025-06-21</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Compiler Design</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">86</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC518</td>
+            <td class="date-col">2025-06-24</td>
+            <td colspan="6" class="course-name">Advanced Database Systems</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">91</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC541</td>
+            <td class="date-col">2025-06-27</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Performance Engineering</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">88</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC520</td>
+            <td class="date-col">2025-06-30</td>
+            <td colspan="6" class="course-name">Cloud Architecture</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">90</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC676</td>
+            <td class="date-col">2025-06-05</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Microservices Architecture</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">89</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC677</td>
+            <td class="date-col">2025-06-08</td>
+            <td colspan="6" class="course-name">Data Mining</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">87</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC585</td>
+            <td class="date-col">2025-06-11</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Advanced Machine Learning</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">94</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC680</td>
+            <td class="date-col">2025-06-14</td>
+            <td colspan="6" class="course-name">Deep Learning</td>
+            <td class="credit-col">4</td>
+            <td class="score-col">92</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC681</td>
+            <td class="date-col">2025-06-17</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Reinforcement Learning</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">88</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC682</td>
+            <td class="date-col">2025-06-20</td>
+            <td colspan="6" class="course-name">Advanced Cybersecurity</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">91</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC569</td>
+            <td class="date-col">2025-06-23</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="course-name">Ethical Hacking</td>
+            <td class="credit-col">3</td>
+            <td class="score-col">89</td>
+            <td class="method-col">Lecture</td>
+            <td class="course-code-col">CSC570</td>
+            <td class="date-col">2025-06-26</td>
+            <td colspan="6" class="course-name"></td>
+            <td class="credit-col"></td>
+            <td class="score-col"></td>
+            <td class="method-col"></td>
+            <td class="course-code-col"></td>
+            <td class="date-col"></td>
+        </tr>
+    </table>
 
-  <div class="section-title">Course History</div>
+    <table class="footer-table">
+        <tr>
+            <td colspan="6">--------------------------------------------</td>
+        </tr>
+        <tr>
+            <td>Total credits obtained:</td><td>197</td>
+            <td>GPA:</td><td>3.68</td>
+            <td>Average score:</td><td>89.3</td>
+            <td colspan="2">Program credits required: 180</td>
+        </tr>
+    </table>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Term</th>
-        <th>Course Code</th>
-        <th>Course Title</th>
-        <th>Credits</th>
-        <th>Grade</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Fall 2021</td><td>CSC 101</td><td>Introduction to Computer Science</td><td>3</td><td>A</td></tr>
-      <tr><td>Fall 2021</td><td>MATH 226</td><td>Calculus I</td><td>4</td><td>B+</td></tr>
-      <tr><td>Fall 2021</td><td>ENGR 100</td><td>Engineering Fundamentals</td><td>3</td><td>A-</td></tr>
-      <tr><td>Spring 2022</td><td>CSC 210</td><td>Data Structures</td><td>3</td><td>B+</td></tr>
-      <tr><td>Spring 2022</td><td>MATH 227</td><td>Calculus II</td><td>4</td><td>B</td></tr>
-      <tr><td>Spring 2022</td><td>PHYS 220</td><td>Physics with Lab I</td><td>4</td><td>A-</td></tr>
-      <tr><td>Fall 2022</td><td>CSC 220</td><td>Computer Architecture</td><td>3</td><td>A</td></tr>
-      <tr><td>Fall 2022</td><td>MATH 324</td><td>Linear Algebra</td><td>3</td><td>B+</td></tr>
-      <tr><td>Fall 2022</td><td>ENGR 205</td><td>Circuit Analysis</td><td>4</td><td>A-</td></tr>
-      <tr><td>Spring 2023</td><td>CSC 340</td><td>Software Engineering</td><td>3</td><td>A</td></tr>
-      <tr><td>Spring 2023</td><td>CSC 415</td><td>Operating Systems</td><td>3</td><td>B+</td></tr>
-      <tr><td>Spring 2023</td><td>ENGR 310</td><td>Digital Logic Design</td><td>3</td><td>A-</td></tr>
-      <tr><td>Fall 2023</td><td>CSC 490</td><td>Database Systems</td><td>3</td><td>A</td></tr>
-      <tr><td>Fall 2023</td><td>CSC 675</td><td>Computer Networks</td><td>3</td><td>B+</td></tr>
-      <tr><td>Fall 2023</td><td>ENGR 400</td><td>Microprocessor Systems</td><td>4</td><td>A-</td></tr>
-      <tr><td>Spring 2024</td><td>CSC 690</td><td>Machine Learning</td><td>3</td><td>A</td></tr>
-      <tr><td>Spring 2024</td><td>CSC 680</td><td>Computer Graphics</td><td>3</td><td>B+</td></tr>
-      <tr><td>Spring 2024</td><td>ENGR 450</td><td>Embedded Systems</td><td>4</td><td>A-</td></tr>
-      <tr><td>Fall 2024</td><td>CSC 895</td><td>Senior Project I</td><td>3</td><td>A</td></tr>
-      <tr><td>Fall 2024</td><td>CSC 780</td><td>Artificial Intelligence</td><td>3</td><td>A-</td></tr>
-      <tr><td>Spring 2025</td><td>CSC 896</td><td>Senior Project II</td><td>3</td><td>A</td></tr>
-      <tr><td>Spring 2025</td><td>CSC 850</td><td>Cybersecurity</td><td>3</td><td>B+</td></tr>
-      <tr><td>Summer 2025</td><td>CSC 700</td><td>Advanced Algorithms</td><td>3</td><td>A</td></tr>
-      <tr><td>Summer 2025</td><td>ENGR 495</td><td>Engineering Ethics</td><td>2</td><td>A</td></tr>
-    </tbody>
-  </table>
+    <div class="verification-section">
+        <div class="qr-code">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://verify.sfsu.edu/transcript/SF2026001?hash=d4f8a9b2c1e5f7g3h6i9j2k5l8m1n4o7p0q3r6s9t2u5v8w1x4y7z0" alt="QR Code">
+            <span>Scan to Verify</span>
+            <span>Transcript Authenticity</span>
+        </div>
+        <div class="seal-section">
+        <p>Official Seal of Academic Affairs Office</p>
+            <p><strong>Academic Affairs Office of San Francisco State University (Seal)</strong></p>
+            <p>Print Date: June 25, 2025</p>
+        <p>Page 1 of 1</p>
+        </div>
+    </div>
 
-  <div class="summary">
-    <p><strong>Cumulative GPA:</strong> 3.78</p>
-    <p><strong>Total Credits Earned:</strong> 78.0</p>
-    <p><strong>Academic Standing:</strong> Good</p>
-    <p><strong>Degree Conferred:</strong> Bachelor of Science in Computer Engineering</p>
-    <p><strong>Graduation Date:</strong> June 15, 2025</p>
-  </div>
-
-  <div class="footer">
-    <p>This transcript is official only if delivered directly from the Registrar's Office.</p>
-    <p>San Francisco State University • 1600 Holloway Avenue • San Francisco, CA 94132 • registrar@sfsu.edu</p>
-  </div>
-
-  <div class="page-number">
-    Page 1 of 1
-  </div>
 
 </body>
 </html>

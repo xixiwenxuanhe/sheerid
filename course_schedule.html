@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Course Schedule - San Francisco State University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* Top Navigation Bar */
+        .top-nav {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .logo {
+            width: 80px;
+            height: 60px;
+            margin-right: 15px;
+            object-fit: contain;
+        }
+
+        .university-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 30px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu li {
+            color: white;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-menu li:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .nav-menu li.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            color: white;
+            gap: 15px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #4a90e2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 20px;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .page-title-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+        
+        .semester-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .semester {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .current-date {
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .view-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #f0f0f0;
+        }
+
+        .btn.active {
+            background: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+
+        /* Course Schedule Table */
+        .schedule-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            overflow-x: auto;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .schedule-header {
+            background: #f8f9fa;
+            height: 50px;
+        }
+
+        .schedule-header th {
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            color: #333;
+            border-right: 1px solid #e9ecef;
+            width: auto;
+        }
+
+        .schedule-header th:first-child {
+            width: 80px;
+        }
+
+        .schedule-header th:not(:first-child) {
+            width: calc((100% - 80px) / 7);
+        }
+
+        .schedule-header th:last-child {
+            border-right: none;
+        }
+
+        .time-slot {
+            width: 80px;
+            min-width: 80px;
+            max-width: 80px;
+            background: #f8f9fa;
+            text-align: center;
+            font-weight: 600;
+            color: #666;
+            border-right: 1px solid #e9ecef;
+            border-bottom: 1px solid #e9ecef;
+            padding: 10px;
+            vertical-align: top;
+        }
+
+        .schedule-cell {
+            width: calc((100% - 80px) / 7);
+            min-width: calc((100% - 80px) / 7);
+            max-width: calc((100% - 80px) / 7);
+            border-right: 1px solid #e9ecef;
+            border-bottom: 1px solid #e9ecef;
+            padding: 5px;
+            vertical-align: top;
+            min-height: 100px;
+            position: relative;
+        }
+
+        .schedule-cell:last-child {
+            border-right: none;
+        }
+
+        .course-block {
+            background: linear-gradient(135deg, #8b9dc3 0%, #9fa8da 100%);
+            color: white;
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .course-block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .course-block.math {
+            background: linear-gradient(135deg, #ce93d8 0%, #e1bee7 100%);
+        }
+
+        .course-block.cs {
+            background: linear-gradient(135deg, #b39ddb 0%, #d1c4e9 100%);
+        }
+
+        .course-block.physics {
+            background: linear-gradient(135deg, #ffcc80 0%, #ffe0b2 100%);
+        }
+
+        .course-block.english {
+            background: linear-gradient(135deg, #a5d6a7 0%, #c8e6c9 100%);
+        }
+
+        .course-block.lab {
+            background: linear-gradient(135deg, #ffab91 0%, #ffccbc 100%);
+        }
+
+        .course-name {
+            font-weight: bold;
+            margin-bottom: 2px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .course-time {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+
+        .course-room {
+            font-size: 10px;
+            opacity: 0.8;
+        }
+
+        .dropdown-indicator {
+            float: right;
+            margin-top: 2px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .schedule-table {
+                font-size: 11px;
+            }
+            
+            .course-block {
+                padding: 4px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <img src="imgs/san-francisco-state-university2.png" alt="SFSU Logo" class="logo">
+            <span class="university-name">San Francisco State University</span>
+            <ul class="nav-menu">
+                <li>Home</li>
+                <li class="active">My Schedule</li>
+                <li>My Exams</li>
+                <li>My Courses</li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <span>🔔</span>
+            <span>⚙️</span>
+            <div class="user-info">
+                <span>Cobe Lysander [925213884]</span>
+                <div class="user-avatar">C</div>
+                <span>▼</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <div class="page-title-section">
+                <h1 class="page-title">My Schedule</h1>
+                <div class="semester-info">
+                    <span class="semester">Fall Semester 2025</span>
+                    <span class="current-date">July 18, 2025</span>
+                    <span class="semester">Status: Currently Enrolled</span>
+                </div>
+            </div>
+            <div class="view-controls">
+                <button class="btn active">Full Display</button>
+                <button class="btn">Simplified</button>
+                <button class="btn">Results</button>
+                <button class="btn">📋</button>
+                <button class="btn">📊</button>
+                <button class="btn">🖨️</button>
+            </div>
+        </div>
+
+        <div class="schedule-container">
+            <table class="schedule-table">
+                <colgroup>
+                    <col style="width: 80px;">
+                    <col style="width: calc((100% - 80px) / 7);">
+                    <col style="width: calc((100% - 80px) / 7);">
+                    <col style="width: calc((100% - 80px) / 7);">
+                    <col style="width: calc((100% - 80px) / 7);">
+                    <col style="width: calc((100% - 80px) / 7);">
+                    <col style="width: calc((100% - 80px) / 7);">
+                    <col style="width: calc((100% - 80px) / 7);">
+                </colgroup>
+                <thead>
+                    <tr class="schedule-header">
+                        <th></th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                        <th>Sunday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="time-slot">8:00<br>-<br>10:00</td>
+                        <td class="schedule-cell">
+                            <div class="course-block math">
+                                <div class="course-name">Mathematics [992304-003]</div>
+                                <div class="course-time">[Week 1-8] [Period 1-4]</div>
+                                <div class="course-room">DZ418</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block cs">
+                                <div class="course-name">Data Structures [993469-001]</div>
+                                <div class="course-time">[Week 7-16] [Period 3-4]</div>
+                                <div class="course-room">DYC203</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block physics">
+                                <div class="course-name">Natural Language Processing [991995-001]</div>
+                                <div class="course-time">[Week 1-10] [Period 3-4]</div>
+                                <div class="course-room">D1339</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block english">
+                                <div class="course-name">Undergraduate - Morphology and Syntax [000556-047]</div>
+                                <div class="course-time">[Week 14-17] [Period 1-2]</div>
+                                <div class="course-room">D1251</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block lab">
+                                <div class="course-name">Data Statistics [993469-001-001E] [Big Data Statistics 2]</div>
+                                <div class="course-time">[Week 10] [Period 1-4]</div>
+                                <div class="course-room">DS1501</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block math">
+                                <div class="course-name">Mathematics [992304-003-001E] [Linear Algebra, matlab programming basics, operational research and program design, non-parametric optimization, applied mathematics analysis]</div>
+                                <div class="course-time">[Week 1-7,11] [Period 1-4]</div>
+                                <div class="course-room">LDJ04</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="time-slot">10:00<br>-<br>12:00</td>
+                        <td class="schedule-cell">
+                            <div class="course-block cs">
+                                <div class="course-name">Mathematics [992304-003]</div>
+                                <div class="course-time">[1-8Week] [1-4Period]</div>
+                                <div class="course-room">DZ418</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block english">
+                                <div class="course-name">Data Structures [993469-001]</div>
+                                <div class="course-time">[7-16Week] [3-4Period]</div>
+                                <div class="course-room">DYC203</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block lab">
+                                <div class="course-name">Natural Language Processing [991995-001]</div>
+                                <div class="course-time">[1-10Week] [3-4Period]</div>
+                                <div class="course-room">D1339</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block math">
+                                <div class="course-name">Mathematics [992304-003]</div>
+                                <div class="course-time">[1-8Week] [3-4Period]</div>
+                                <div class="course-room">DZ223</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block cs">
+                                <div class="course-name">Data Statistics [993469-001-001E] [Big Data Statistics 2]</div>
+                                <div class="course-time">[10Week] [1-4Period]</div>
+                                <div class="course-room">DS1501</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block math">
+                                <div class="course-name">Mathematics [992304-003-001E] [Linear Algebra, matlab programming basics, operational research and program design, non-parametric optimization, applied mathematics analysis]</div>
+                                <div class="course-time">[1-7,11Week] [1-4Period]</div>
+                                <div class="course-room">LDJ04</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="time-slot">14:00<br>-<br>16:00</td>
+                        <td class="schedule-cell"></td>
+                        <td class="schedule-cell"></td>
+                        <td class="schedule-cell">
+                            <div class="course-block physics">
+                                <div class="course-name">Data Visualization [991996-001-001E] [Data Visualization Training Project 1, Project 2, Project 3]</div>
+                                <div class="course-time">[4,6,8,10Week] [6-9Period]</div>
+                                <div class="course-room">DS1501</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block english">
+                                <div class="course-name">Natural Language Processing [991995-001-001E] [Machine Learning, Text Analysis]</div>
+                                <div class="course-time">[10-11Week] [6-9Period]</div>
+                                <div class="course-room">DS1502</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block lab">
+                                <div class="course-name">Natural Language Processing [991995-001-001E] [Analysis, Word Segmentation, Dependency Parsing]</div>
+                                <div class="course-time">[7-8Week] [6-9Period]</div>
+                                <div class="course-room">DS1502</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="time-slot">16:00<br>-<br>18:00</td>
+                        <td class="schedule-cell">
+                            <div class="course-block cs">
+                                <div class="course-name">Data Visualization [991996-001]</div>
+                                <div class="course-time">[1-10Week] [8-9Period]</div>
+                                <div class="course-room">DZ222</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block math">
+                                <div class="course-name">Computer Vision [991994-001]</div>
+                                <div class="course-time">[2-11Week] [8-9Period]</div>
+                                <div class="course-room">D1413</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block physics">
+                                <div class="course-name">Data Visualization [991996-001-001E] [Data Visualization Training Project 1, Project 2, Project 3]</div>
+                                <div class="course-time">[4,6,8,10Week] [6-9Period]</div>
+                                <div class="course-room">DS1501</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block lab">
+                                <div class="course-name">Computer Vision [991994-001-001E] [Edge Detection, Feature Extraction, Object Recognition, Human Detection]</div>
+                                <div class="course-time">[6,8-10Week] [8-9Period]</div>
+                                <div class="course-room">DS1512</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block english">
+                                <div class="course-name">Natural Language Processing [991995-001-001E] [Machine Learning, Text Analysis]</div>
+                                <div class="course-time">[10-11Week] [6-9Period]</div>
+                                <div class="course-room">DS1502</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block cs">
+                                <div class="course-name">Natural Language Processing [991995-001-001E] [Analysis, Word Segmentation, Dependency Parsing]</div>
+                                <div class="course-time">[7-8Week] [6-9Period]</div>
+                                <div class="course-room">DS1502</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="time-slot">18:00<br>-<br>20:00</td>
+                        <td class="schedule-cell">
+                            <div class="course-block math">
+                                <div class="course-name">Computer Vision [991994-001]</div>
+                                <div class="course-time">[2-11Week] [10-11Period]</div>
+                                <div class="course-room">D1126</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell">
+                            <div class="course-block cs">
+                                <div class="course-name">Data Visualization [991996-001]</div>
+                                <div class="course-time">[1-10Week] [10-11Period]</div>
+                                <div class="course-room">DZ222</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell"></td>
+                        <td class="schedule-cell">
+                            <div class="course-block lab">
+                                <div class="course-name">Computer Vision [991994-001-001E] [Edge Detection, Feature Extraction, Object Recognition, Human Detection]</div>
+                                <div class="course-time">[6,8-10Week] [10-11Period]</div>
+                                <div class="course-room">DS1512</div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell"></td>
+                        <td class="schedule-cell"></td>
+                        <td class="schedule-cell"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="time-slot">Evening</td>
+                        <td class="schedule-cell">
+                            <div class="course-block english">
+                                <div class="course-name">Undergraduate - Artificial Intelligence [991998-002]</div>
+                                <div class="course-time">[19-21Week]</div>
+                                <div class="course-room"></div>
+                                <span class="dropdown-indicator">▶</span>
+                            </div>
+                        </td>
+                        <td class="schedule-cell"></td>
+                        <td class="schedule-cell"></td>
+                        <td class="schedule-cell"></td>
+                        <td class="schedule-cell"></td>
+                        <td class="schedule-cell"></td>
+                        <td class="schedule-cell"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Simple static date display - no dynamic updates needed
+
+        // Add interactivity
+        document.querySelectorAll('.course-block').forEach(block => {
+            block.addEventListener('click', function() {
+                const courseName = this.querySelector('.course-name').textContent;
+                alert(`Course Details: ${courseName}`);
+            });
+        });
+
+        // View control buttons
+        document.querySelectorAll('.view-controls .btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.view-controls .btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Dropdown indicator functionality
+        document.querySelectorAll('.dropdown-indicator').forEach(indicator => {
+            indicator.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.textContent = this.textContent === '▶' ? '▼' : '▶';
+            });
+        });
+    </script>
+</body>
+</html> 

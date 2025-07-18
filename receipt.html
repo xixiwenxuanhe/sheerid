@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SFSU Tuition Receipt</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f2f2f2;
+      padding: 30px;
+    }
+    .receipt {
+      width: 700px;
+      margin: auto;
+      background: #ffffff;
+      border: 1px solid #cccccc;
+      border-radius: 6px;
+      padding: 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .header h2 {
+      margin: 0;
+      color: #4b2e83;
+    }
+    .header p {
+      margin: 2px 0;
+      font-size: 14px;
+      color: #444;
+    }
+    .details, .fees, .payment-status {
+      margin-top: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    th {
+      background: #4b2e83;
+      color: #fff;
+      text-align: left;
+    }
+    .total {
+      font-weight: bold;
+      background: #f9f9f9;
+    }
+    .payment-status p {
+      font-size: 14px;
+      margin: 6px 0;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      text-align: center;
+      color: #666;
+    }
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+      .receipt {
+        box-shadow: none;
+        border: none;
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="receipt">
+    <div class="header">
+      <h2>San Francisco State University</h2>
+      <p>Bursar's Office, 1600 Holloway Avenue, ADM 155, San Francisco, CA 94132</p>
+      <p>Phone: (415) 338‑1281 | Email: service@sfsu.edu</p>
+    </div>
+
+    <div class="details">
+      <table>
+        <tr>
+          <td><strong>Receipt #:</strong> TR-20250718001</td>
+          <td><strong>Date:</strong> 2025‑07‑18</td>
+        </tr>
+        <tr>
+          <td><strong>Student Name:</strong> Doea John Lee</td>
+          <td><strong>Student ID:</strong> 925214742</td>
+        </tr>
+        <tr>
+          <td><strong>Term:</strong> Fall 2025</td>
+          <td><strong>Method:</strong> Credit Card</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="fees">
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Units</th>
+            <th>Unit Cost</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Graduate Tuition (Engineering)</td>
+            <td>9</td>
+            <td>$420.00</td>
+            <td>$3,780.00</td>
+          </tr>
+          <tr>
+            <td>Campus Fee</td>
+            <td>—</td>
+            <td>—</td>
+            <td>$220.00</td>
+          </tr>
+          <tr>
+            <td>Student Health Services</td>
+            <td>—</td>
+            <td>—</td>
+            <td>$120.00</td>
+          </tr>
+          <tr class="total">
+            <td colspan="3">Total Paid</td>
+            <td>$4,120.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="payment-status">
+      <p><strong>Status:</strong> Paid in Full</p>
+      <p><strong>Transaction ID:</strong> TXN‑56781234</p>
+    </div>
+
+    <div class="footer">
+      Official receipt issued by the SF State Bursar’s Office.<br>
+      Retain this receipt for your records. To request an official copy, contact the Bursar at (415) 338‑1281. :contentReference[oaicite:1]{index=1}
+    </div>
+  </div>
+</body>
+</html>
